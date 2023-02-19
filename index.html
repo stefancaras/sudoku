@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sudoku</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <table id="table">
+      <tr>
+        <td tabindex="0" class="box" data-id="00"></td>
+        <td tabindex="0" class="box" data-id="01"></td>
+        <td tabindex="0" class="box" data-id="02"></td>
+        <td tabindex="0" class="box" data-id="03"></td>
+        <td tabindex="0" class="box" data-id="04"></td>
+        <td tabindex="0" class="box" data-id="05"></td>
+        <td tabindex="0" class="box" data-id="06"></td>
+        <td tabindex="0" class="box" data-id="07"></td>
+        <td tabindex="0" class="box" data-id="08"></td>
+      </tr>
+      <tr>
+        <td tabindex="0" class="box" data-id="10"></td>
+        <td tabindex="0" class="box" data-id="11"></td>
+        <td tabindex="0" class="box" data-id="12"></td>
+        <td tabindex="0" class="box" data-id="13"></td>
+        <td tabindex="0" class="box" data-id="14"></td>
+        <td tabindex="0" class="box" data-id="15"></td>
+        <td tabindex="0" class="box" data-id="16"></td>
+        <td tabindex="0" class="box" data-id="17"></td>
+        <td tabindex="0" class="box" data-id="18"></td>
+      </tr>
+      <tr>
+        <td tabindex="0" class="box" data-id="20"></td>
+        <td tabindex="0" class="box" data-id="21"></td>
+        <td tabindex="0" class="box" data-id="22"></td>
+        <td tabindex="0" class="box" data-id="23"></td>
+        <td tabindex="0" class="box" data-id="24"></td>
+        <td tabindex="0" class="box" data-id="25"></td>
+        <td tabindex="0" class="box" data-id="26"></td>
+        <td tabindex="0" class="box" data-id="27"></td>
+        <td tabindex="0" class="box" data-id="28"></td>
+      </tr>
+      <tr>
+        <td tabindex="0" class="box" data-id="30"></td>
+        <td tabindex="0" class="box" data-id="31"></td>
+        <td tabindex="0" class="box" data-id="32"></td>
+        <td tabindex="0" class="box" data-id="33"></td>
+        <td tabindex="0" class="box" data-id="34"></td>
+        <td tabindex="0" class="box" data-id="35"></td>
+        <td tabindex="0" class="box" data-id="36"></td>
+        <td tabindex="0" class="box" data-id="37"></td>
+        <td tabindex="0" class="box" data-id="38"></td>
+      </tr>
+      <tr>
+        <td tabindex="0" class="box" data-id="40"></td>
+        <td tabindex="0" class="box" data-id="41"></td>
+        <td tabindex="0" class="box" data-id="42"></td>
+        <td tabindex="0" class="box" data-id="43"></td>
+        <td tabindex="0" class="box" data-id="44"></td>
+        <td tabindex="0" class="box" data-id="45"></td>
+        <td tabindex="0" class="box" data-id="46"></td>
+        <td tabindex="0" class="box" data-id="47"></td>
+        <td tabindex="0" class="box" data-id="48"></td>
+      </tr>
+      <tr>
+        <td tabindex="0" class="box" data-id="50"></td>
+        <td tabindex="0" class="box" data-id="51"></td>
+        <td tabindex="0" class="box" data-id="52"></td>
+        <td tabindex="0" class="box" data-id="53"></td>
+        <td tabindex="0" class="box" data-id="54"></td>
+        <td tabindex="0" class="box" data-id="55"></td>
+        <td tabindex="0" class="box" data-id="56"></td>
+        <td tabindex="0" class="box" data-id="57"></td>
+        <td tabindex="0" class="box" data-id="58"></td>
+      </tr>
+      <tr>
+        <td tabindex="0" class="box" data-id="60"></td>
+        <td tabindex="0" class="box" data-id="61"></td>
+        <td tabindex="0" class="box" data-id="62"></td>
+        <td tabindex="0" class="box" data-id="63"></td>
+        <td tabindex="0" class="box" data-id="64"></td>
+        <td tabindex="0" class="box" data-id="65"></td>
+        <td tabindex="0" class="box" data-id="66"></td>
+        <td tabindex="0" class="box" data-id="67"></td>
+        <td tabindex="0" class="box" data-id="68"></td>
+      </tr>
+      <tr>
+        <td tabindex="0" class="box" data-id="70"></td>
+        <td tabindex="0" class="box" data-id="71"></td>
+        <td tabindex="0" class="box" data-id="72"></td>
+        <td tabindex="0" class="box" data-id="73"></td>
+        <td tabindex="0" class="box" data-id="74"></td>
+        <td tabindex="0" class="box" data-id="75"></td>
+        <td tabindex="0" class="box" data-id="76"></td>
+        <td tabindex="0" class="box" data-id="77"></td>
+        <td tabindex="0" class="box" data-id="78"></td>
+      </tr>
+      <tr>
+        <td tabindex="0" class="box" data-id="80"></td>
+        <td tabindex="0" class="box" data-id="81"></td>
+        <td tabindex="0" class="box" data-id="82"></td>
+        <td tabindex="0" class="box" data-id="83"></td>
+        <td tabindex="0" class="box" data-id="84"></td>
+        <td tabindex="0" class="box" data-id="85"></td>
+        <td tabindex="0" class="box" data-id="86"></td>
+        <td tabindex="0" class="box" data-id="87"></td>
+        <td tabindex="0" class="box" data-id="88"></td>
+      </tr>
+    </table>
+    <div id="buttons">
+      <button id="solve" class="btn">Solve</button>
+      <button id="clear" class="redBtn">Clear</button>
+    </div>
+
+    <script src="./sudoku.js"></script>
+  </body>
+</html>

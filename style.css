@@ -1,0 +1,74 @@
+td {
+  font-size: 2rem;
+  text-align: center;
+  height: 3rem;
+  width: 3rem;
+  border: 1px solid;
+}
+td:nth-child(3n) {
+  border-right: 3px solid;
+}
+td:focus {
+  background-color: lightblue;
+}
+tr:nth-child(3n) {
+  border-bottom: 3px solid;
+}
+table {
+  margin: 50px auto;
+  border-collapse: collapse;
+  border: 3px solid;
+}
+#buttons {
+  width: fit-content;
+  margin: auto;
+}
+/* Buttons  */
+.btn,
+.greenBtn,
+.redBtn,
+.yellowBtn {
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn {
+  background-color: #3498db;
+}
+.btn:hover {
+  background-color: #21618b;
+}
+.btn:active {
+  background-color: #153d57;
+}
+.greenBtn {
+  background-color: #00bc8c;
+}
+.greenBtn:hover {
+  background-color: #018261;
+}
+.greenBtn:active {
+  background-color: #005e46;
+}
+.redBtn {
+  background-color: #e74c3c;
+}
+.redBtn:hover {
+  background-color: #ac392c;
+}
+.redBtn:active {
+  background-color: #7c2b22;
+}
+.yellowBtn {
+  background-color: #f39c12;
+}
+.yellowBtn:hover {
+  background-color: #b8770e;
+}
+.yellowBtn:active {
+  background-color: #8f5c0b;
+}
