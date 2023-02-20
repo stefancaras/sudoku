@@ -1,3 +1,6 @@
+body {
+  background-color: #bbbbbb;
+}
 td {
   font-size: 2rem;
   text-align: center;
@@ -15,19 +18,40 @@ tr:nth-child(3n) {
   border-bottom: 3px solid black;
 }
 table {
-  margin: 50px auto;
+  background-color: white;
+  margin: auto;
   border-collapse: collapse;
   border: 3px solid black;
 }
-#buttons {
+#buttons,
+#title {
   width: fit-content;
-  margin: auto;
+  margin: 2rem auto;
+}
+.error {
+  display: none;
+  text-align: center;
+  color: white;
+  white-space: nowrap;
+  padding: 2rem;
+  background-color: #e74c3cdc;
+  border-radius: 50px;
+}
+.relative {
+  position: relative;
+}
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 /* Buttons  */
 .btn,
 .greenBtn,
 .redBtn,
 .yellowBtn {
+  font-size: 1.2rem;
   color: white;
   border: none;
   border-radius: 5px;
