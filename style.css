@@ -28,14 +28,19 @@ table {
   width: fit-content;
   margin: 2rem auto;
 }
-.error {
+.error,
+.msg {
   display: none;
   text-align: center;
   color: white;
   white-space: nowrap;
   padding: 2rem;
-  background-color: #e74c3cdc;
+  background-color: #e74c3c;
   border-radius: 50px;
+  box-shadow: 0 0 10px 10px black;
+}
+.msg {
+  background-color: #00bc8d;
 }
 .relative {
   position: relative;

@@ -5,13 +5,47 @@ const boxes = document.querySelectorAll(".box");
 let board, solved;
 let i = 0;
 
+$("#table").addEventListener("keydown", (event) => {
+  const array = event.target.dataset.id.split("");
+  if (typeof board[array[0]][array[1]] === "number") {
+    if (event.key.match(/[1-9]/)) {
+      event.target.textContent = event.key;
+      board[array[0]][array[1]] = Number(event.key);
+      if (board[array[0]][array[1]] === solved[array[0]][array[1]]) {
+        event.target.style.color = "green";
+      } else event.target.style.color = "red";
+    } else if (event.key === "Backspace" || event.key === "Delete") {
+      event.target.textContent = "";
+      board[array[0]][array[1]] = 0;
+    }
+    if (board.join("") === solved.join("")) {
+      $(".msg").style.display = "block";
+    }
+  }
+});
+
+$("#buttons").addEventListener("click", (event) => {
+  if (event.target.id === "new") {
+    newGame();
+  } else if (event.target.id === "solve") {
+    if (!solve(board)) errorMsg();
+    else fillBoxes();
+  } else if (event.target.id === "clear") {
+    board = board.map((el) => el.fill(0));
+    fillBoxes();
+    solved = solved.map((el) => el.fill(0));
+  }
+});
+
 const fillBoxes = () => {
   boxes.forEach((el) => {
     const array = el.dataset.id.split("");
-    if (board[array[0]][array[1]] !== 0) {
+    if (board[array[0]][array[1]] === 0) {
+      el.textContent = "";
+    } else {
       el.textContent = board[array[0]][array[1]];
       el.style.color = "black";
-    } else el.textContent = "";
+    }
   });
 };
 
@@ -41,40 +75,13 @@ const possible = (y, x, n, board) => {
       x0 -= 3;
       y0++;
     }
-    if (board[y][i] === n || board[i][x] === n || board[y0][x0] === n) {
+    if (board[y][i] == n || board[i][x] == n || board[y0][x0] == n) {
       return false;
     }
     x0++;
   }
   return true;
 };
-
-$("#table").addEventListener("keydown", (event) => {
-  const array = event.target.dataset.id.split("");
-  if (event.key.match(/[1-9]/)) {
-    event.target.textContent = event.key;
-    board[array[0]][array[1]] = Number(event.key);
-    if (board[array[0]][array[1]] === solved[array[0]][array[1]]) {
-      event.target.style.color = "green";
-    } else event.target.style.color = "red";
-  } else if (event.key === "Backspace" || event.key === "Delete") {
-    event.target.textContent = "";
-    board[array[0]][array[1]] = 0;
-  }
-});
-
-$("#buttons").addEventListener("click", (event) => {
-  if (event.target.id === "new") {
-    newGame();
-  } else if (event.target.id === "solve") {
-    if (!solve(board)) errorMsg();
-    else fillBoxes();
-  } else if (event.target.id === "clear") {
-    board = board.map((el) => el.fill(0));
-    fillBoxes();
-    solved = solved.map((el) => el.fill(0));
-  }
-});
 
 const errorMsg = () => {
   $(".error").style.display = "block";
@@ -90,6 +97,7 @@ const newGame = () => {
   solved = [];
   board.forEach((el) => solved.push([...el]));
   solve(solved);
+  $(".msg").style.display = "none";
   i++;
   if (i === 5) i = 0;
 };
