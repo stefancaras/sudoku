@@ -5,39 +5,6 @@ const boxes = document.querySelectorAll(".box");
 let board, solved;
 let i = 0;
 
-$("#table").addEventListener("keydown", (event) => {
-  const array = event.target.dataset.id.split("");
-  if (typeof board[array[0]][array[1]] === "number") {
-    if (event.key.match(/[1-9]/)) {
-      event.target.textContent = event.key;
-      board[array[0]][array[1]] = Number(event.key);
-      if (board[array[0]][array[1]] === solved[array[0]][array[1]]) {
-        event.target.style.color = "green";
-      } else event.target.style.color = "red";
-    } else if (event.key === "Backspace" || event.key === "Delete") {
-      event.target.textContent = "";
-      board[array[0]][array[1]] = 0;
-    }
-    if (board.join("") === solved.join("")) {
-      $(".msg").style.display = "block";
-    }
-  }
-});
-
-$("#buttons").addEventListener("click", (event) => {
-  $(".msg").style.display = "none";
-  if (event.target.id === "new") {
-    newGame();
-  } else if (event.target.id === "solve") {
-    if (!solve(board)) errorMsg();
-    else fillBoxes();
-  } else if (event.target.id === "clear") {
-    board = board.map((el) => el.fill(0));
-    fillBoxes();
-    solved = solved.map((el) => el.fill(0));
-  }
-});
-
 const fillBoxes = () => {
   boxes.forEach((el) => {
     const array = el.dataset.id.split("");
@@ -76,10 +43,27 @@ const possible = (y, x, n, board) => {
       x0 -= 3;
       y0++;
     }
-    if (board[y][i] == n || board[i][x] == n || board[y0][x0] == n) {
+    if (
+      (board[y][i] == n && i !== x) ||
+      (board[i][x] == n && i !== y) ||
+      (board[y0][x0] == n && y0 !== y && x0 !== x)
+    ) {
       return false;
     }
     x0++;
+  }
+  return true;
+};
+
+const isValid = (board) => {
+  for (let y = 0; y < 9; y++) {
+    for (let x = 0; x < 9; x++) {
+      if (board[y][x] !== 0) {
+        if (!possible(y, x, board[y][x], board)) {
+          return false;
+        }
+      }
+    }
   }
   return true;
 };
@@ -102,3 +86,36 @@ const newGame = () => {
   if (i === 5) i = 0;
 };
 newGame();
+
+$("#table").addEventListener("keydown", (event) => {
+  const array = event.target.dataset.id.split("");
+  if (typeof board[array[0]][array[1]] === "number") {
+    if (event.key.match(/[1-9]/)) {
+      event.target.textContent = event.key;
+      board[array[0]][array[1]] = Number(event.key);
+      if (board[array[0]][array[1]] === solved[array[0]][array[1]]) {
+        event.target.style.color = "green";
+      } else event.target.style.color = "red";
+    } else if (event.key === "Backspace" || event.key === "Delete") {
+      event.target.textContent = "";
+      board[array[0]][array[1]] = 0;
+    }
+    if (board.join("") === solved.join("")) {
+      $(".msg").style.display = "block";
+    }
+  }
+});
+
+$("#buttons").addEventListener("click", (event) => {
+  $(".msg").style.display = "none";
+  if (event.target.id === "new") {
+    newGame();
+  } else if (event.target.id === "solve") {
+    if (!isValid(board) || !solve(board)) errorMsg();
+    else fillBoxes();
+  } else if (event.target.id === "clear") {
+    board = board.map((el) => el.fill(0));
+    fillBoxes();
+    solved = solved.map((el) => el.fill(0));
+  }
+});
