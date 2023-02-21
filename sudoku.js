@@ -25,6 +25,7 @@ $("#table").addEventListener("keydown", (event) => {
 });
 
 $("#buttons").addEventListener("click", (event) => {
+  $(".msg").style.display = "none";
   if (event.target.id === "new") {
     newGame();
   } else if (event.target.id === "solve") {
@@ -97,7 +98,6 @@ const newGame = () => {
   solved = [];
   board.forEach((el) => solved.push([...el]));
   solve(solved);
-  $(".msg").style.display = "none";
   i++;
   if (i === 5) i = 0;
 };
