@@ -3,7 +3,7 @@ import { easy } from "./games.js";
 const $ = (query) => document.querySelector(query);
 const boxes = document.querySelectorAll(".box");
 let board, solved;
-let i = 0;
+let iter = 0;
 
 const fillBoxes = () => {
   boxes.forEach((el) => {
@@ -18,14 +18,14 @@ const fillBoxes = () => {
 };
 
 const solve = (board) => {
-  for (let i = 0; i < 9; i++) {
-    for (let j = 0; j < 9; j++) {
-      if (board[i][j] === 0) {
+  for (let y = 0; y < 9; y++) {
+    for (let x = 0; x < 9; x++) {
+      if (board[y][x] === 0) {
         for (let n = 1; n < 10; n++) {
-          if (possible(i, j, n, board)) {
-            board[i][j] = n;
+          if (possible(y, x, n, board)) {
+            board[y][x] = n;
             if (solve(board)) return true;
-            board[i][j] = 0;
+            board[y][x] = 0;
           }
         }
         return false;
@@ -77,17 +77,18 @@ const errorMsg = () => {
 
 const newGame = () => {
   board = [];
-  easy[i].forEach((el) => board.push([...el]));
+  easy[iter].forEach((el) => board.push([...el]));
   fillBoxes();
   solved = [];
   board.forEach((el) => solved.push([...el]));
   solve(solved);
-  i++;
-  if (i === 5) i = 0;
+  iter++;
+  if (iter === 5) iter = 0;
 };
 newGame();
 
 $("#table").addEventListener("keydown", (event) => {
+  event.preventDefault();
   const array = event.target.dataset.id.split("");
   if (typeof board[array[0]][array[1]] === "number") {
     if (event.key.match(/[1-9]/)) {
@@ -103,6 +104,18 @@ $("#table").addEventListener("keydown", (event) => {
     if (board.join("") === solved.join("")) {
       $(".msg").style.display = "block";
     }
+  }
+  // Use keyboard arrows for navigation
+  if (event.key === "ArrowRight") {
+    event.target.nextElementSibling?.focus();
+  } else if (event.key === "ArrowLeft") {
+    event.target.previousElementSibling?.focus();
+  } else if (event.key === "ArrowUp") {
+    let index = event.target.cellIndex;
+    event.target.parentElement.previousElementSibling?.cells[index].focus();
+  } else if (event.key === "ArrowDown") {
+    let index = event.target.cellIndex;
+    event.target.parentElement.nextElementSibling?.cells[index].focus();
   }
 });
 
